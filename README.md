@@ -1,6 +1,6 @@
 # Automation Order Manager ⚙️
 
-A portfolio-ready **Python / Flask business automation application** that demonstrates how incoming orders can be automatically classified and routed through different operational workflows.
+A portfolio-ready **Python / Flask business automation application** that demonstrates how incoming orders can be automatically classified, routed and tracked through different operational workflows.
 
 The project is inspired by real-world automation tools such as **Make.com** and **Zapier**: instead of manually checking every order, the backend applies business rules and determines the next action automatically.
 
@@ -8,18 +8,20 @@ The project is inspired by real-world automation tools such as **Make.com** and 
 
 Small businesses often process orders manually. As order volume grows, this creates delays, inconsistent prioritization and missed follow-ups.
 
-This demo shows how a backend service can automatically evaluate an order and assign the appropriate workflow.
+This demo shows how a backend service can automatically evaluate an order, assign the appropriate workflow and update its operational status.
 
 ## ✨ Features
 
 - Responsive operations dashboard
 - Create and list customer orders
 - Automatic workflow selection based on order value
+- Update order workflow status through REST API
 - Persistent SQLite storage
-- REST API for order creation and retrieval
-- Input validation
+- Input validation and clear API errors
+- Environment-based database and port configuration
 - Health-check endpoint
-- Clean Flask project structure
+- Automated API tests with `pytest`
+- GitHub Actions CI on pushes and pull requests
 - Easy foundation for webhooks, email, Telegram, CRM or e-commerce integrations
 
 ## 🤖 Automation rules
@@ -48,7 +50,7 @@ Email · Telegram · CRM · Make.com · Zapier
 
 ## 🧰 Tech stack
 
-`Python` · `Flask` · `SQLite` · `REST API` · `HTML` · `CSS`
+`Python` · `Flask` · `SQLite` · `REST API` · `HTML` · `CSS` · `pytest` · `GitHub Actions`
 
 ## 🔌 API endpoints
 
@@ -56,7 +58,14 @@ Email · Telegram · CRM · Make.com · Zapier
 |---|---|---|
 | `GET` | `/api/orders` | List orders |
 | `POST` | `/api/orders` | Create an order and apply automation rules |
+| `PATCH` | `/api/orders/<id>` | Update order status |
 | `GET` | `/health` | Service health check |
+
+Allowed order statuses:
+
+```text
+new · processing · completed · cancelled
+```
 
 ## ▶️ Run locally
 
@@ -73,8 +82,21 @@ Open:
 http://127.0.0.1:5002
 ```
 
+## ✅ Run tests
+
+```bash
+pip install -r requirements-dev.txt
+pytest -q
+```
+
+The test suite verifies health checks, automation routing rules, status updates and invalid input handling.
+
+## 🔄 Continuous integration
+
+GitHub Actions automatically runs the test suite whenever code is pushed to `main` or a pull request is opened.
+
 ## 💡 Portfolio focus
 
-This repository demonstrates that I can translate a **business workflow into backend automation logic**, expose the process through REST endpoints and persist operational data.
+This repository demonstrates that I can translate a **business workflow into backend automation logic**, expose that workflow through REST APIs, persist operational data and verify the behavior with automated tests.
 
-The next production-level extensions would be webhook support, authentication, role-based access, Docker, automated tests, background jobs and integrations with services such as Shopify, WooCommerce, Telegram, Make.com or Zapier.
+A production version could add real incoming webhooks, authentication, role-based access, background jobs, Docker and integrations with Shopify, WooCommerce, Telegram, Make.com, Zapier or a CRM.
