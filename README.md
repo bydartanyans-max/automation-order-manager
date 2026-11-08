@@ -24,6 +24,16 @@ This demo shows how a backend service can automatically evaluate an order, assig
 - GitHub Actions CI on pushes and pull requests
 - Easy foundation for webhooks, email, Telegram, CRM or e-commerce integrations
 
+## 📸 Screenshots
+
+**Dashboard**
+
+![Automation Order Manager dashboard](screenshots/dashboard.png)
+
+**Orders routed through all three automation rules**
+
+![Orders showing standard, priority and manager-review workflows](screenshots/orders.png)
+
 ## 🤖 Automation rules
 
 | Order value | Automated action |
